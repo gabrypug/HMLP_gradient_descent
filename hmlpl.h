@@ -50,8 +50,6 @@ public:
     double *tmp_weight_vector;
     double *gradient_vector; // It is initialized into the weight_vector_init()
 
-    
-
     // AUX MANAGING
     uint32_t num_aux;
     HMLP *aux;
@@ -68,16 +66,14 @@ public:
     // OUTPUT GENERATION
     ofstream File, reportFile;
 
-
-
-public:
+    // Creator and Destructor
     HMLPL();
     ~HMLPL();
 
-
     // Member functions for creation
     void set_HMLPL(uint32_t id, uint32_t num_layers, uint32_t* num_hidden_neurons,
-        double alpha, double momentum, uint32_t mode, uint32_t num_aux, uint32_t num_epochs, double goal_error, double min_gradient);
+        double alpha, double momentum, uint32_t mode, uint32_t num_aux, uint32_t num_epochs, 
+        double goal_error, double min_gradient);
     int init();
     int create_architecture(void);
     int initialize_weights(void);
@@ -118,7 +114,6 @@ public:
     bool gradient_evaluation(uint32_t weight_Id);
     bool performance_evaluation(void);
 
-
     // Members for testing
     void test(void);
     void feed_input_test(uint32_t i);
@@ -129,12 +124,6 @@ public:
     void feed_input_predict(uint32_t i);
     void forward_prop_predict(void);
 
-    // hmlpl2.cpp
-    void predict_2(uint32_t num_step, uint32_t input_step); // da utilizzare quando il numero di neuroni output è minore del numero di neuroni input
-    void feed_input_predict(double** output_vector, uint32_t i, bool input_Injection);
-    void forward_prop_predict(double** output_vector, uint32_t i);
-    int training_data_export(void);
-
     // Members for Aux creation
     int create_aux(void);
 
@@ -143,12 +132,6 @@ public:
     void aux_return(void);  
     
 };
-
-/*
-double find_max(double** vector, int size1, int column);
-double find_min(double** vector, int size1, int column);
-*/
-
 
 // Thread function
 void *aux_thread(void *arg);

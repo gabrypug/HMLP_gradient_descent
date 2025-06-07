@@ -75,12 +75,7 @@ HMLPL::~HMLPL(){
     delete[] this->tmp_weight_vector;
     delete[] this->gradient_vector;
     cout << "3] HMLP#" << this->id << " DESTRUCTOR: weight arrays destroyed . . ." << endl;
-
-    // Remember always to:
-    // 1) join the alive threads
-    // 2) destroy the mutex
-    // 3) delete aux[]
-    // in this order
+    
     if(token > 0){
         for(size_t i = 0; i < this->num_aux ; i++)
             if (!pthread_cancel(this->aux[i].tid)){
@@ -271,8 +266,6 @@ int HMLPL::get_training_data(const std::string inputs_file, const std::string ta
         return ERR_INIT_DATA;
     } else cout << "Targets injected succesfully..." << endl;
 
-    // normalize_training_vectors();
-
     return SUCCESS_INIT_DATA;
 }
 
@@ -281,8 +274,6 @@ int HMLPL::get_inputs(const std::string inputs_file)
 {
     char filename[50];
     strcpy(filename, inputs_file.c_str());
-    // cout << filename << endl;
-
     this->inputs = readMatrixFromFile(filename);
     this->num_samples = countrows(filename);
     if(countcolumns(filename) % 4){
@@ -298,8 +289,6 @@ int HMLPL::get_targets(const std::string targets_file)
 {
     char filename[50];
     strcpy(filename, targets_file.c_str());
-    // cout << filename << endl;
-
     this->targets = readMatrixFromFile(filename);
     if(countcolumns(filename) % 4){
         cerr << "ERROR: the data format is not correct..."<< endl;
@@ -355,9 +344,7 @@ void HMLPL::train_neural_net(void)
     }
     else {
         cout << "Weights not saved . . ." << endl;
-    } 
-
-    training_data_export();
+    }
 
 }
 
@@ -376,7 +363,6 @@ void HMLPL::train_seq_mode(void)
             cout << "Actual_Err = " << this->actual_error  << endl;
             // cout << "Weight_gradient = " << this->gradient << " | ";
             // cout << "TOKEN = none" << endl;
-            // per stamparlo nel file error_vector.txt
             error_vector[actual_epoch][0] = actual_error;
             //cout << error_vector[actual_epoch][0] << endl;
 
@@ -390,7 +376,6 @@ void HMLPL::train_seq_mode(void)
             this->actual_error = 0;
             for(size_t ii = 0; ii < this->num_weight*4; ii++) this->gradient_vector[ii] = 0;
 
-            //________________L E A R N I N G  L O O P____________________
             for(size_t i = 0; i < this->num_samples; i++)
             {
                 // cout << "==================" << endl;
@@ -402,8 +387,6 @@ void HMLPL::train_seq_mode(void)
                 compute_grad(i);
                 this->train_iter++;
             }
-            //_____________________________________________________
-
 
         }
         break;
@@ -412,13 +395,9 @@ void HMLPL::train_seq_mode(void)
         cout << "=========== L O N L - S E Q U E N T I A L ===========" << endl;
         weight_vector_init();
 
-        //==============================================================
         for(size_t i = 0; i < this->num_aux; i++) { 
             aux[i].weight_vector = this->weight_vector;
-
         }
-        //==============================================================
-
 
         for(this->actual_epoch = 0; this->actual_epoch < this->num_epochs; this->actual_epoch++)
         {
@@ -442,18 +421,15 @@ void HMLPL::train_seq_mode(void)
             }
             //_____________________________________________________
 
-            if((this->token == ((-2) - 3000)) && performance_evaluation()){ // ______ T O  F I X ______
+            if((this->token == ((-2) - 3000)) && performance_evaluation()){ 
                     this->actual_epoch = this->actual_epoch;
                     pthread_mutex_lock(&Wt);
                     this->token = 0;
                     pthread_mutex_unlock(&Wt);
             }
-    /**/
-            //_____________________________________________________
 
             weight_vector_update(this->actual_epoch);
 
-            //________________A U X  S T A R T___________________________________
             if(this->token == 0){
                     pthread_mutex_lock(&Wt);
                     this->token = 1;
@@ -461,9 +437,7 @@ void HMLPL::train_seq_mode(void)
 
                     start_aux();
             }
-            //_____________________________________________________
 
-            //________________A U X  R E T U R N________________________________
             if(this->token == this->num_aux + 1){
                 this->update_epoch = this->actual_epoch;
                 aux_return();
@@ -475,14 +449,12 @@ void HMLPL::train_seq_mode(void)
                 this->token = -2;
                 pthread_mutex_unlock(&Wt);
             }
-            //_____________________________________________________
 
             if(this->end_flag) break;
             
             this->actual_error = 0;
             for(size_t ii = 0; ii < this->num_weight*4; ii++) this->gradient_vector[ii] = 0;
 
-            //________________L E A R N I N G  L O O P____________________
             for(size_t i = 0; i < this->num_samples; i++)
             {
                 // cout << "==================" << endl;
@@ -494,7 +466,6 @@ void HMLPL::train_seq_mode(void)
                 compute_grad(i);
                 this->train_iter++;
             }
-            //_____________________________________________________
 
         }
         break;
@@ -529,7 +500,6 @@ void HMLPL::train_batch_mode(void)
 
             init_corrections(); // dw and dbias setted to zero
 
-            //________________L E A R N I N G  L O O P____________________
             for(size_t i = 0; i < this->num_samples; i++)
             {
                 // cout << "==================" << endl;
@@ -542,7 +512,6 @@ void HMLPL::train_batch_mode(void)
             
             update_weights_batch();
             compute_grad(this->actual_epoch);
-            //_____________________________________________________
 
         }
     break;
@@ -568,23 +537,18 @@ void HMLPL::train_batch_mode(void)
                 break;
             }
 
-
-
             if(this->token < -1){
                 pthread_mutex_lock(&Wt);
                 this->token--;
                 pthread_mutex_unlock(&Wt);
             }
-            //_____________________________________________________
 
-            if((this->token == ((-2) - 3000)) && performance_evaluation()){ // ______ T O  F I X ______
+            if((this->token == ((-2) - 3000)) && performance_evaluation()){ 
                     this->actual_epoch = this->actual_epoch;
                     pthread_mutex_lock(&Wt);
                     this->token = 0;
                     pthread_mutex_unlock(&Wt);
             }
-    /**/
-            //_____________________________________________________
 
             weight_vector_update(this->actual_epoch);
 
@@ -984,19 +948,11 @@ void HMLPL::compute_grad(uint32_t p){
         {
             for(size_t k = 0;k < this->num_neurons[i+1]; k++)
             {
-                /*
-                this->gradient_vector[r] = (this->gradient_vector[r] * (this->train_iter - 1) * (2 - q) + fabs(this->lay[i].neu[j].dw[k].r * this->alpha) * q )/this->train_iter;
-                this->gradient_vector[r + 1] = (this->gradient_vector[r + 1] * (this->train_iter - 1) * (2 - q) + fabs(this->lay[i].neu[j].dw[k].i * this->alpha) * q )/this->train_iter;
-                this->gradient_vector[r + 2] = (this->gradient_vector[r + 2] * (this->train_iter - 1) * (2 - q) + fabs(this->lay[i].neu[j].dw[k].j * this->alpha) * q )/this->train_iter;
-                this->gradient_vector[r + 3] = (this->gradient_vector[r + 3] * (this->train_iter - 1) * (2 - q) + fabs(this->lay[i].neu[j].dw[k].k * this->alpha) * q )/this->train_iter;
-                */
 
                 this->gradient_vector[r] = fabs(this->lay[i].neu[j].dw[k].r * this->alpha);
                 this->gradient_vector[r + 1] = fabs(this->lay[i].neu[j].dw[k].i * this->alpha);
                 this->gradient_vector[r + 2] = fabs(this->lay[i].neu[j].dw[k].j * this->alpha);
                 this->gradient_vector[r + 3] = fabs(this->lay[i].neu[j].dw[k].k * this->alpha);
-                
-
 
                 d_sum = d_sum + fabs(this->gradient_vector[r]) +
                                 fabs(this->gradient_vector[r + 1]) +
@@ -1440,7 +1396,6 @@ int HMLPL::create_aux()
 
     aux = new HMLP[num_aux]();
 
-    // pthread_create(...,...,...,void *arg) arguments vector
     if(num_aux && arg == nullptr) arg = new t_arg[num_aux]();
 
     for(size_t i = 0; i < num_aux; i++)
@@ -1470,10 +1425,7 @@ int HMLPL::create_aux()
             tmp = tmp + step;
         }
         aux[i].num_work = last_weight - first_weight + 1;
-        //cout << "Num ele: "<< last_weight<< " " << first_weight<< " " << aux[i].num_work << endl;
         aux[i].work_vector = new u_int[aux[i].num_work]();
-
-        // cout << "La rete aux "<< i+1 << "prende indici da " << aux[i].first_weight + 1 << " a " << aux[i].last_weight + 1 << endl;
     }
 
     for(size_t i = 0; i < num_weight; i++){
@@ -1505,7 +1457,6 @@ void HMLPL::start_aux(void){
             exit(EXIT_FAILURE);
         }
     }
-    // char g; cin >> g;
 
 }
 
@@ -1513,7 +1464,6 @@ void HMLPL::aux_return(void){
     int res;
     int numthread;
 
-    // printf("Sono nella aux_return\n");
     for(size_t i = 0; i < num_aux ; i++)
     {
 
@@ -1522,12 +1472,7 @@ void HMLPL::aux_return(void){
             printf("pthread_join failed\n");
             exit(EXIT_FAILURE);
         }
-        else {
-            printf("%d) Thread concluso %d\n", i, numthread);
-        }
     }
-    // for(int i = 0; i<num_weights;i++) printf("%d) %f \n",i,tmp_weight_vector[i]);
-
 }
 
 void *aux_thread(void *arg) {
@@ -1542,17 +1487,14 @@ void *aux_thread(void *arg) {
     t_arg *p = (t_arg *)arg;
     indx = (p->aux_Id);
     HMLP *aux = &(main->aux[indx]);
-    //cout << "H E L L O " << indx << endl;
 
-    cout << "Thread#" << indx << " is working . . ." << endl;
+    // cout << "Thread#" << indx << " is working . . ." << endl;
 
     for(size_t i = 0; i < aux->num_work; i++)
     {
-        // cout << "Thread#" << indx << " is processing weight " << aux->work_vector[i] << ". . ." << endl;
         r = aux->work_vector[i] * 4;
         if(main->gradient_evaluation(r)) // The weights are computed by auxs
         {
-
             aux->reset_net(main->launch_epoch);
             aux->train_neural_net(aux->work_vector[i]);
             tmp = aux->predict_weight(main->launch_epoch * tau);
@@ -1560,7 +1502,6 @@ void *aux_thread(void *arg) {
             main->tmp_weight_vector[r + 1] = tmp.i;
             main->tmp_weight_vector[r + 2] = tmp.j;
             main->tmp_weight_vector[r + 3] = tmp.k;
-            /**/
         }
         else // The weights are not changed
         {
@@ -1568,16 +1509,9 @@ void *aux_thread(void *arg) {
         }
     }
 
-
-
     pthread_mutex_lock(&Wt);
     main->token++;
     pthread_mutex_unlock(&Wt);
 
-
-
-
     pthread_exit((void *)indx);
-    // pthread_exit(nullptr);
 }
-/**/
