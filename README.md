@@ -7,7 +7,7 @@ This repository contains all the C/C++ source code for the implemanation of the 
 - [Buscarino, Arturo, Luigi Fortuna, and Gabriele Puglisi. "Optimizing Multilayer Perceptrons to Approximate Nonlinear Quaternion Functions." International Conference on Nonlinear Dynamics and Applications. Cham: Springer Nature Switzerland, 2023.](https://link.springer.com/chapter/10.1007/978-3-031-50635-2_41)
 - [Buscarino, Arturo, Luigi Fortuna, and Gabriele Puglisi. "Optimizing Multilayer Perceptrons to Approximate Nonlinear Quaternion Functions." International Conference on Nonlinear Dynamics and Applications. Cham: Springer Nature Switzerland, 2023.
 ](https://ieeexplore.ieee.org/abstract/document/10382920?casa_token=xDKqHfV_Yj8AAAAA:kvvn0BeYg69BAELB_fszg0LaIn4kYxsj3GDpof3ea1Hz8rGfH3zlPuBIh1piDkH6hJ-3isPK)
-- [Buscarino, Arturo, et al. "Predicting Chaos in the Three-body Problem with Quaternion-valued Neural Networks." (2023).]((https://elib.bsu.by/handle/123456789/319703))
+- [Buscarino, Arturo, et al. "Predicting Chaos in the Three-body Problem with Quaternion-valued Neural Networks." (2023).](https://elib.bsu.by/handle/123456789/319703)
 - [Arena, Paolo, et al. "Two-leg balancing in a quadrupedal robot via hypercomplex neural networks." 2023 30th IEEE International Conference on Electronics, Circuits and Systems (ICECS). IEEE, 2023.](https://ieeexplore.ieee.org/abstract/document/10382875?casa_token=T507UBWADvEAAAAA:HKeMBpfN74fOO3ToN1xqA4KFNhA43aowOATBpm8i1LNGtAQAQvC8zTpr1aEXorD4AV1CX4MW)
 
 ## How to compile the main example
