@@ -1,2 +1,3 @@
-How to compile the example
+ How to compile
+
   This is the way
