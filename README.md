@@ -1,21 +1,9 @@
 # Hypercomplex Multilayer Perceptron (HMLP) with gradient descent algorithm and Learning-on-Learning Method
 
-A short description of your project.
+This repository contains all the C/C++ source code for the implemanation of the Hypercomplex Multilayer Perceptron (HMLP) with gradient descent algorithm and Learning-on-Learning Method used in the papar.
 
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Features](#features)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Installation
+## How to compile
 
 Instructions on how to install and run your project.
 
-```bash
-git clone https://github.com/yourusername/yourproject.git
-cd yourproject
-pip install -r requirements.txt
 
