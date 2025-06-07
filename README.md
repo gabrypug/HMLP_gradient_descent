@@ -2,10 +2,10 @@
 
 This repository contains all the C/C++ source code for the implemanation of the Hypercomplex Multilayer Perceptron (HMLP) with gradient descent algorithm and Learning-on-Learning Method used in the following articles:
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Features](#features)
-- [Contributing](#contributing)
+- [Buscarino, Arturo, et al. "Hypercomplex Multilayer Perceptron for Planetary Orbits Prediction." 2023 9th International Conference on Control, Decision and Information Technologies (CoDIT). IEEE, 2023.](https://ieeexplore.ieee.org/abstract/document/10284281?casa_token=pqKWaT-FpKAAAAAA:2paorz-EA919OunApldvUATXptWO3r66I0_4LLp4wMSGuD0QmoocceGqbrwl9NcnpYtyMTqU)
+- [Usage]
+- [Features]
+- [Contributing]
 - [License](#license)
 
 
