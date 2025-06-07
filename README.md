@@ -5,7 +5,9 @@ This repository contains all the C/C++ source code for the implemanation of the 
 ## How to compile the main example
 
 From terminal: 
-`cd <HMLP_FOLDER`
+
+`cd <HMLP_FOLDER>`
+
 `g++ ./*.cpp ./Q/*.cpp - o <EXACUTABLE_NAME> -lpthread`
 
 
