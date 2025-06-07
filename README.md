@@ -1,4 +1,4 @@
-# Project Title
+Hypercomplex Multilayer Perceptron (HMLP) with gradient descent algorithm and Learning-on-Learning Method
 
 A short description of your project.
 
