@@ -11,6 +11,7 @@ This repository contains all the C/C++ source code for the implemanation of the 
 - [Arena, Paolo, et al. "Two-leg balancing in a quadrupedal robot via hypercomplex neural networks." 2023 30th IEEE International Conference on Electronics, Circuits and Systems (ICECS). IEEE, 2023.](https://ieeexplore.ieee.org/abstract/document/10382875?casa_token=T507UBWADvEAAAAA:HKeMBpfN74fOO3ToN1xqA4KFNhA43aowOATBpm8i1LNGtAQAQvC8zTpr1aEXorD4AV1CX4MW)
 - [Buscarino, A., Famoso, C., Fortuna, L., & Puglisi, G. (2024, August). Auxiliary Learning for Hypercomplex Neural Networks. In 2024 IEEE 19th Conference on Industrial Electronics and Applications (ICIEA) (pp. 1-5). IEEE.
 ](https://ieeexplore.ieee.org/abstract/document/10664949?casa_token=zExxRdZgssQAAAAA:pdspC8nKFMjOqSgIbrUqbhiD6erxpOCv-gRXPNQoYvSuACnyE8cuxHmtTKRABySvt45Ns-tL)
+- [Buscarino, A., Fortuna, L., Di Mauro, M., Zafeer, S., & Famoso, C. (2024, September). Quaternion Valued Neural Network for Modeling Vibrating Electromechanical Structures to Reduce Physical Vibrating Hazard in the Work Environment. In 2024 IEEE 8th Forum on Research and Technologies for Society and Industry Innovation (RTSI) (pp. 137-142). IEEE.](https://ieeexplore.ieee.org/abstract/document/10761272/authors#authors)
 
 ## How to compile the main example
 
