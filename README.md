@@ -9,6 +9,8 @@ This repository contains all the C/C++ source code for the implemanation of the 
 ](https://ieeexplore.ieee.org/abstract/document/10382920?casa_token=xDKqHfV_Yj8AAAAA:kvvn0BeYg69BAELB_fszg0LaIn4kYxsj3GDpof3ea1Hz8rGfH3zlPuBIh1piDkH6hJ-3isPK)
 - [Buscarino, Arturo, et al. "Predicting Chaos in the Three-body Problem with Quaternion-valued Neural Networks." (2023).](https://elib.bsu.by/handle/123456789/319703)
 - [Arena, Paolo, et al. "Two-leg balancing in a quadrupedal robot via hypercomplex neural networks." 2023 30th IEEE International Conference on Electronics, Circuits and Systems (ICECS). IEEE, 2023.](https://ieeexplore.ieee.org/abstract/document/10382875?casa_token=T507UBWADvEAAAAA:HKeMBpfN74fOO3ToN1xqA4KFNhA43aowOATBpm8i1LNGtAQAQvC8zTpr1aEXorD4AV1CX4MW)
+- [Buscarino, A., Famoso, C., Fortuna, L., & Puglisi, G. (2024, August). Auxiliary Learning for Hypercomplex Neural Networks. In 2024 IEEE 19th Conference on Industrial Electronics and Applications (ICIEA) (pp. 1-5). IEEE.
+](https://ieeexplore.ieee.org/abstract/document/10664949?casa_token=zExxRdZgssQAAAAA:pdspC8nKFMjOqSgIbrUqbhiD6erxpOCv-gRXPNQoYvSuACnyE8cuxHmtTKRABySvt45Ns-tL)
 
 ## How to compile the main example
 
